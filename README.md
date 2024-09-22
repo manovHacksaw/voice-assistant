@@ -33,12 +33,14 @@ This project is a voice-activated virtual assistant named Jarvis. It utilizes sp
   - `pyaudio` (ensure you have the appropriate audio drivers installed)
   
 ### Install Olama on Your System
-     - Visit the [Ollama Website](https://ollama.com/) and click on Download Button.
-     - In Windows Terminal or Powershell: 
-          ```bash
+- Visit the [Ollama Website](https://ollama.com/) and click on Download Button.
+ - In Windows Terminal or Powershell: 
+    ```bash
           ollama 
           ollama pull mistral
-     Note: You can use any model available in the Ollama library that suits your system configuration, not just "mistral." Check the Ollama Documentation for more options.
+
+
+Note: You can use any model available in the Ollama library that suits your system configuration, not just [Mistral](https://ollama.com/library/mistral). Check the [Ollama Documentation](https://ollama.com/library) for more options.
 
 ### Cloning the Repository
 
@@ -54,8 +56,24 @@ This project is a voice-activated virtual assistant named Jarvis. It utilizes sp
    ```bash
    pip install speechRecognition pyttsx3 pywhatkit wikipedia langchain ollama pyaudio langchain-ollama
 
-**Running the ChatBot**
-     ```bash
-     python main.py
+
+**Running the ChatBot:**
+```bash
+python main.py 
+```
 
 
+## Usage
+ Upon running, the assistant will greet you and wait for your commands. You can ask it to perform tasks such as playing music, searching the web, or providing information. To exit the assistant, simply say "exit".
+
+## Contributing
+If you would like to contribute to this project, feel free to submit a pull request or open an issue for discussion.
+
+
+
+## Acknowledgments
+Thanks to the developers of the libraries used in this project: SpeechRecognition, pyttsx3, pywhatkit, Wikipedia, langchain, and Ollama.
+
+### Notes:
+- Be sure to replace the repository link if needed and adjust any sections that may require your specific details.
+- If you create a `requirements.txt` file, include all necessary packages for easier installation.
