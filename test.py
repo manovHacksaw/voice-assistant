@@ -1,5 +1,6 @@
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
+import time
 
 # Define the template for the chatbot
 template = """
@@ -21,6 +22,18 @@ chain = prompt | model
 
 print("Initializing...")
 
+def stream_response(input_data):
+    # Generate the full response first
+    response = chain.invoke(input_data)
+
+    # Simulate streaming by outputting small chunks incrementally
+    chunk_size = 10  # Define the size of each chunk to be streamed (in characters)
+    for i in range(0, len(response), chunk_size):
+        chunk = response[i:i + chunk_size]  # Get the next chunk
+        print(chunk, end="", flush=True)  # Print the chunk, flush to force immediate output
+        time.sleep(0.05)  # Simulate typing delay (adjust as needed for speed)
+    print()  # Move to the next line after the full response
+
 def handle_conversation():
     context = ""  # Initial empty context
     print("Welcome to the AI ChatBot! Type 'exit' to quit.")
@@ -28,8 +41,8 @@ def handle_conversation():
     while True:
         user_input = input("You: ")  # Capture user input
         if user_input.lower() == "exit":
-             print("Bye Bye! Have a nice day")
-             break
+            print("Bye Bye! Have a nice day")
+            break
         
         # Add user question to the context
         context += f"User: {user_input}\n"
@@ -40,15 +53,13 @@ def handle_conversation():
             "question": user_input
         }
         
-        # Invoke the model to get the response
-        result = chain.invoke(input_data)
+        print(f"AI: Wait for a few moments! I am generating the response for you...")
         
-        # Add model's answer to the context
-        context += f"AI: {result}\n"
+        # Stream the response in real-time (simulated)
+        stream_response(input_data)
         
-        print(f"AI: Wait for few moments! While I generate the response for you... Thank you for your patience")
-        # Print the result
-        print(f"AI: {result}")
-        
+        # Add model's answer to the context (assume the response is complete at this point)
+        context += f"AI: {chain.invoke(input_data)}\n"
+
 # Start the conversation
 handle_conversation()
